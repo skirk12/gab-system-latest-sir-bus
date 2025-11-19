@@ -68,8 +68,8 @@ public class student {
     private void viewScholarships() {
         String sql = "SELECT * FROM tbl_scholarship";
 
-        String[] headers = {"ID", "Name", "Description", "Status", "Slots"};
-        String[] columns = {"s_id", "s_name", "s_desc", "s_status", "s_slots"};
+        String[] headers = {"ID", "Name", "Description", "Status"};
+        String[] columns = {"scholarship_id", "scholarship_name", "s_desc", "s_status"};
 
         conf.viewRecords(sql, headers, columns);
     }
@@ -82,7 +82,7 @@ public class student {
         int sId = sc.nextInt();
         sc.nextLine();
 
-        String check = "SELECT * FROM tbl_application WHERE user_id = ? AND s_id = ?";
+        String check = "SELECT * FROM tbl_application WHERE u_id = ? AND scholarship_id = ?";
         List<Map<String, Object>> existing = conf.fetchRecords(check, studentId, sId);
 
         if (!existing.isEmpty()) {
@@ -93,7 +93,7 @@ public class student {
         String date = java.time.LocalDate.now().toString();
         String status = "Pending";
 
-        String sql = "INSERT INTO tbl_application (user_id, s_id, app_date, app_status) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO tbl_application (u_id, scholarship_id, date_applied, a_status) VALUES (?, ?, ?, ?)";
 
         conf.addRecord(sql, studentId, sId, date, status);
 

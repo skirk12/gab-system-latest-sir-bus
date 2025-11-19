@@ -51,7 +51,10 @@ public class admin {
 
         System.out.print("Enter Scholarship Amount: ");
         int amount = sc.nextInt();
-        sc.nextLine();  // consume newline
+        sc.nextLine(); 
+        
+        System.out.print("Enter Scholarship Description: ");
+        String desc = sc.nextLine();
 
         System.out.print("Enter Scholarship Status (Open/Closed): ");
         String status = sc.nextLine();
@@ -59,8 +62,8 @@ public class admin {
         System.out.print("Enter Application Deadline (YYYY-MM-DD): ");
         String deadline = sc.nextLine();
 
-        String sql = "INSERT INTO tbl_scholarship (scholarship_name, s_amount, s_status, s_application_deadline) VALUES (?, ?, ?, ?)";
-        conf.addRecord(sql, name, amount, status, deadline);
+        String sql = "INSERT INTO tbl_scholarship (scholarship_name, s_amount, s_desc, s_status, s_application_deadline) VALUES (?,?, ?, ?, ?)";
+        conf.addRecord(sql, name, amount, desc, status, deadline);
 
         System.out.println("Scholarship created successfully!");
     }
